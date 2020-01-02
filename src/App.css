@@ -43,7 +43,6 @@ h1 {
     display: grid;
     justify-items: center;
     width: 100%;
-
 }
 .lesson-item > label, .lesson-item > textarea {
     border-radius: 5px;

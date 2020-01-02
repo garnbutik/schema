@@ -10,7 +10,9 @@ import {
 const ScheduleState = (props) => {
   const initialState = {
       isTransferredToCanvas: false,
-      lessons: [
+      lessons: [],
+      coursedetails: '',
+      lessons_old: [
           {
               "id": "457600",
               "startdate": "2018-04-05",
@@ -349,7 +351,7 @@ const ScheduleState = (props) => {
 
     //Fetch from Schemahantering Rest API
     const fetchLessons = async (courseCode) => {
-        const res = await axios.get('http://localhost:8100/lessons');
+        const res = await axios.get(`http://localhost:8100/lessons/${courseCode}`);
         dispatch({
             type: FETCH_LESSONS,
             payload: res.data
@@ -359,6 +361,7 @@ const ScheduleState = (props) => {
     return <ScheduleContext.Provider
         value={{
             lessons: state.lessons,
+            coursedetails: state.coursedetails,
             fetchLessons
         }}
     >

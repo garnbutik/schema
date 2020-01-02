@@ -5,6 +5,7 @@ import Lessons from './components/Lessons';
 import Navbar from './components/NavBar';
 import Home from './components/Home';
 import ScheduleState from "./context/schedule/ScheduleState";
+import CreateSchedule from "./components/CreateSchedule";
 
 class App extends Component {
     render() {
@@ -16,6 +17,7 @@ class App extends Component {
                             <Navbar/>
                             <Switch>
                                 <Route exact path='/' component={Home}/>
+                                <Route exact path='/skapa-schema' component={CreateSchedule}/>
                                 <Route exact path='/hantera-schema' component={Lessons}/>
                             </Switch>
                         </div>

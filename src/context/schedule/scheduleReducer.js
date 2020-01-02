@@ -7,7 +7,8 @@ export default (state, action) => {
         case FETCH_LESSONS: {
             return {
                 ...state,
-                lessons: action.payload
+                lessons: action.payload.lessons,
+                coursedetails: action.payload.course,
             }
         }
         default: {

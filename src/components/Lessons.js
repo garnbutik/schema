@@ -1,6 +1,7 @@
 import React, {useContext, Fragment} from 'react';
 import Lesson from "./Lesson";
 import ScheduleContext from "../context/schedule/scheduleContext";
+import LessonTableRow from "./LessonTableRow";
 
 const Lessons = () => {
     const scheduleContext = useContext(ScheduleContext);
@@ -14,11 +15,14 @@ const Lessons = () => {
     return (
         <Fragment>
             <form>
-                <button onClick={buttonClick}>Hämta lektioner</button>
-                <input id={'courseCode'}/>
-                {lessons.map(lesson => (
-                    <Lesson key={lesson.id} lesson={lesson} coursedetails={coursedetails} />
-                ))}
+                <div className={'button-bar'}>
+                    <h3>Hej</h3>
+                    <input id={'courseCode'}/>
+                    <button onClick={buttonClick}>Hämt lektioner</button>
+                </div>
+                <div className={'grid'}>{lessons.map(lesson => (
+                    <Lesson key={lesson.id} lesson={lesson} coursedetails={coursedetails}/>
+                ))}</div>
             </form>
         </Fragment>
     )

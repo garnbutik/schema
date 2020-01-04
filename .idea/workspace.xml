@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f084ec64-da8c-41e1-972f-083c963e7b59" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/LessonTableRow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/table.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Lesson.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Lessons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Lessons.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/context/schedule/ScheduleState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/schedule/ScheduleState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/schedule/scheduleReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/schedule/scheduleReducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,10 +20,16 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1VkUyZ1l04bZ8pPI2qI2xekPstB" />
@@ -37,7 +43,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -52,11 +59,12 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\fredr\WebstormProjects\schema\src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\fredr\WebstormProjects\schema\Old" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\fredr\WebstormProjects\schema\src\components" />
+      <recent name="C:\Users\fredr\WebstormProjects\schema\src" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -99,7 +107,10 @@
       <workItem from="1577796844228" duration="2930000" />
       <workItem from="1577901006984" duration="430000" />
       <workItem from="1577954474993" duration="2588000" />
-      <workItem from="1577991934598" duration="2231000" />
+      <workItem from="1577991934598" duration="2384000" />
+      <workItem from="1577994336428" duration="14000" />
+      <workItem from="1578041669411" duration="1609000" />
+      <workItem from="1578074828781" duration="13446000" />
     </task>
     <task id="LOCAL−00001" summary="en massa">
       <created>1577901081367</created>
@@ -107,7 +118,13 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1577901081367</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="en massa">
+      <created>1577994197329</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1577994197329</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,29 +139,33 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577797133084" />
-    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1577901080576">
+    <state x="276" y="114" width="1058" height="812" key="CommitChangelistDialog2" timestamp="1578140662255">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1577901080576" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1577992652900">
+    <state x="276" y="114" width="1058" height="812" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578140662255" />
+    <state x="29" y="86" key="DiffContextDialog" timestamp="1577994191600">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1577992652900" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1577992652900">
+    <state x="29" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577994191600" />
+    <state width="1899" height="196" key="GridCell.Tab.0.bottom" timestamp="1578088275804">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1577992652900" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1577992652900">
+    <state width="1899" height="196" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1578088275804" />
+    <state width="1899" height="196" key="GridCell.Tab.0.center" timestamp="1578088275803">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1577992652900" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1577992652900">
+    <state width="1899" height="196" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1578088275803" />
+    <state width="1899" height="196" key="GridCell.Tab.0.left" timestamp="1578088275803">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1577992652900" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1577901096655">
+    <state width="1899" height="196" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1578088275803" />
+    <state width="1899" height="196" key="GridCell.Tab.0.right" timestamp="1578088275803">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1577901096655" />
+    <state width="1899" height="196" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1578088275803" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1577994209181">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1577994209181" />
   </component>
 </project>

@@ -5,7 +5,7 @@ const Lesson = (props) => {
     return (
         <Fragment>
 
-            <div className='lesson-container-grid'>
+            <div className='card'>
                 <div className='lesson-item'>
                     <label htmlFor={'lesson-id' + props.lesson.id}>ID</label>
                     <textarea value={props.lesson.id} id={'lesson-id' + props.lesson.id} readOnly/>

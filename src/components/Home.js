@@ -4,7 +4,8 @@ import '../App.css';
 const Home = () => {
     return (
         <div>
-            <h3>Hem</h3>
+            <h2>Luleå tekniska universitet</h2>
+            <h3>Här kan du skapa schemaunderlag för kurser på Luleå tekniska universitet </h3>
         </div>
     )
 };

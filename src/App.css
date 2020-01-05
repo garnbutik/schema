@@ -4,8 +4,7 @@
 
 .App {
     text-align: center;
-    width: 75%;
-    margin: 2rem auto;
+    width: 100%;
     font-family: roboto, sans-serif;
 
 }
@@ -57,11 +56,6 @@ h1 {
 
 }
 
-.button-bar {
-    display: flex;
-    justify-content: space-between;
-}
-
 .grid {
     display: grid;
     grid-gap: 1rem;
@@ -96,7 +90,25 @@ h1 {
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+    background-color: rgba(214, 214, 216, 0.99);
+    background-color: #A8DBA8;
+}
+
+.navLink-default{
+    border: #000000 solid 1px;
+    border-radius: 0.25rem;
+    padding: 0.7rem;
+    text-decoration: none;
+    color: black;
+}
+
+.isActiveRoute{
+    border: black solid 1px;
+    border-radius: 0.25rem;
+    padding: 0.7rem;
+    font-weight: bold;
+    background-color: #eeffde;
 }
 
 
@@ -112,6 +124,40 @@ h1 {
     margin: 1rem;
 }
 
+.margin-1rem{
+    margin: 1rem;
+}
+
+
+.button-bar {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+.button-bar-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-bar-item:first-child{
+}
+
 .button-bar-item * {
     margin: 0.25rem;
+}
+
+.btn-primary{
+    background-color: rgba(227, 241, 255, 0.99);
+    background-color: #4acfcf;
+    border-radius: 0.25rem;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    width: 10rem;
+    height: 3rem;
+    font-family: roboto, sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: auto;
 }

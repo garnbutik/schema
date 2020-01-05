@@ -1,20 +1,41 @@
 import React from 'react';
 import '../App.css';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 const NavBar = () => {
     return (
         <nav className='navbar'>
-            <h1>Schema</h1>
+            <div style={{display:"flex", alignItems: 'center'}}>
+                <i style={{margin: '0.25rem'}} className="fas fa-calendar-day"/>
+                <h1>Schema</h1>
+            </div>
             <ul>
                 <li>
-                    <Link to={"/"}>Start</Link>
+                    <NavLink
+                        to={"/"}
+                        exact
+                        className={'navLink-default'}
+                        activeClassName={'isActiveRoute'}>
+                        Start
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to={"/skapa-schema"}>Skapa schema</Link>
+                    <NavLink
+                        to={"/skapa-schema"}
+                        exact
+                        className={'navLink-default'}
+                        activeClassName={'isActiveRoute'}>
+                        Skapa schema
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to={"/hantera-schema"}>Hantera schema</Link>
+                    <NavLink
+                        to={"/hantera-schema"}
+                        exact
+                        className={'navLink-default'}
+                        activeClassName={'isActiveRoute'}>
+                        Hantera schema
+                    </NavLink>
                 </li>
             </ul>
         </nav>

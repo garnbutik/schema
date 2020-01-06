@@ -99,12 +99,17 @@ const ScheduleState = (props) => {
         });
     };
 
-    const postToCanvas = async (newState) => {
+    const postToCanvas = async (newState, userID) => {
         dispatch({
             type: SET_ADDITIONAL_PROPS,
             payload: newState
         });
-        const res = await axios.post(`${baseUrl}/canvas/`, state.lessons);
+        const requestBody = {
+            course: state.coursedetails,
+            user: userID,
+            lessons: state.lessons
+        };
+        const res = await axios.post(`${baseUrl}/canvas/`, requestBody);
         if (res.status === 201) {
             dispatch({
                 type: SET_IS_TRANSFERRED_TO_CANVAS,

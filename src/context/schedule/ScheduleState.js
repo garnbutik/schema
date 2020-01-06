@@ -5,7 +5,9 @@ import axios from 'axios';
 
 import {
     SET_LESSONS,
-    SET_ADDITIONAL_PROPS
+    SET_ADDITIONAL_PROPS,
+    SET_IS_TRANSFERRED_TO_CANVAS,
+    SET_USERS_FROM_CANVAS
 } from "../types";
 
 const ScheduleState = (props) => {
@@ -13,16 +15,7 @@ const ScheduleState = (props) => {
         isTransferredToCanvas: false,
         lessons: [],
         coursedetails: '',
-        canvasContexts: [
-            {
-                contextCode: 1,
-                name: 'Fredrik'
-            },
-            {
-                contextCode: 2,
-                name: 'Ruslan'
-            }
-        ],
+        canvasUsers: [],
         lessons_old: [
             {
                 "id": "457608",
@@ -93,13 +86,13 @@ const ScheduleState = (props) => {
         ],
     };
 
-    const baseUrl = 'http://localhost:8100/';
+    const baseUrl = 'http://localhost:8100';
 
     const [state, dispatch] = useReducer(ScheduleReducer, initialState);
 
     //Fetch from Schemahantering Rest API
     const fetchLessons = async (courseCode) => {
-        const res = await axios.get(`${baseUrl}lessons/${courseCode}`);
+        const res = await axios.get(`${baseUrl}/lessons/${courseCode}`);
         dispatch({
             type: SET_LESSONS,
             payload: res.data
@@ -111,18 +104,32 @@ const ScheduleState = (props) => {
             type: SET_ADDITIONAL_PROPS,
             payload: newState
         });
-        const res = await axios.post(`${baseUrl}canvas/`, state.lessons);
+        const res = await axios.post(`${baseUrl}/canvas/`, state.lessons);
+        if (res.status === 201) {
+            dispatch({
+                type: SET_IS_TRANSFERRED_TO_CANVAS,
+                payload: true
+            })
+        }
         console.log(res.status);
     };
 
+    const fetchUsersFromCanvas = async (searchString) => {
+        const res = await axios.get(`${baseUrl}/users/${searchString}`);
+        dispatch({
+            type: SET_USERS_FROM_CANVAS,
+            payload: res.data
+        })
+    };
 
     return <ScheduleContext.Provider
         value={{
             lessons: state.lessons,
             coursedetails: state.coursedetails,
-            canvasContexts: state.canvasContexts,
+            canvasUsers: state.canvasUsers,
             fetchLessons,
-            setStateBeforePost: postToCanvas
+            postToCanvas,
+            fetchUsersFromCanvas
         }}
     >
         {props.children}

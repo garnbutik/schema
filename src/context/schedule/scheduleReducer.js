@@ -1,6 +1,8 @@
 import {
     SET_LESSONS,
-    SET_ADDITIONAL_PROPS
+    SET_ADDITIONAL_PROPS,
+    SET_IS_TRANSFERRED_TO_CANVAS,
+    SET_USERS_FROM_CANVAS
 } from "../types";
 
 export default (state, action) => {
@@ -16,6 +18,18 @@ export default (state, action) => {
             return {
                 ...state,
                 lessons: action.payload
+            }
+        }
+        case SET_IS_TRANSFERRED_TO_CANVAS: {
+            return {
+                ...state,
+                isTransferredToCanvas: action.payload
+            }
+        }
+        case SET_USERS_FROM_CANVAS: {
+            return {
+                ...state,
+                canvasUsers: action.payload
             }
         }
         default: {

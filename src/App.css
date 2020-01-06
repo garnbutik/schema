@@ -101,6 +101,8 @@ h1 {
     padding: 0.7rem;
     text-decoration: none;
     color: black;
+    width: 10rem;
+    display: block;
 }
 
 .isActiveRoute{

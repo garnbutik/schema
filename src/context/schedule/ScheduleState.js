@@ -16,87 +16,76 @@ const ScheduleState = (props) => {
         lessons: [],
         coursedetails: '',
         canvasUsers: [],
-        lessons_old: [
-            {
-                "id": "457608",
-                "startdate": "2018-04-18",
-                "starttime": "10:15",
-                "enddate": "2018-04-18",
-                "endtime": "11:45",
-                "columns": [
-                    "",
-                    "A2029",
-                    "Helena Brännström",
-                    "Lektion",
-                    "",
-                    "M0010N. Försäljning och etik",
-                    "Luleå",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                ]
-            },
-            {
-                "id": "457609",
-                "startdate": "2018-04-19",
-                "starttime": "13:00",
-                "enddate": "2018-04-19",
-                "endtime": "14:30",
-                "columns": [
-                    "",
-                    "A2011",
-                    "Helena Brännström",
-                    "Lektion",
-                    "",
-                    "M0010N. Försäljning och etik",
-                    "Luleå",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                ]
-            },
-            {
-                "id": "457610",
-                "startdate": "2018-04-19",
-                "starttime": "14:45",
-                "enddate": "2018-04-19",
-                "endtime": "16:15",
-                "columns": [
-                    "",
-                    "A2011",
-                    "Helena Brännström",
-                    "Lektion",
-                    "",
-                    "M0010N. Försäljning och etik",
-                    "Luleå",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                ]
-            }
-        ],
     };
 
     const baseUrl = 'http://localhost:8100';
 
+    const resetLessons = {
+        course: "",
+        lessons: []
+    };
+
     const [state, dispatch] = useReducer(ScheduleReducer, initialState);
 
     //Fetch from Schemahantering Rest API
-    const fetchLessons = async (courseCode) => {
-        const res = await axios.get(`${baseUrl}/lessons/${courseCode}`);
+    const fetchLessons = async (courseCode, startdate, enddate) => {
+        //resets lessons when searching
+        dispatch({
+            type: SET_LESSONS,
+            payload: resetLessons
+        });
+        const res = await axios.get(`${baseUrl}/lessons/${courseCode}`, {
+            params: {
+                startDate: startdate,
+                endDate: enddate
+            }
+        });
         dispatch({
             type: SET_LESSONS,
             payload: res.data
         });
+
+        //saves to LS to keep state when page is refreshed
+        localStorage.setItem("lessons", JSON.stringify(res.data));
+    };
+
+    /*
+    Helper method to check if state is persisted to LS
+     */
+    const fetchFromLS = () => {
+        const lessonsFromLS = JSON.parse(localStorage.getItem("lessons"));
+
+        //If no lessons in LS set to empty array
+        if (lessonsFromLS === undefined || lessonsFromLS === null || lessonsFromLS.length < 1) {
+            const lessons = {
+                course: "",
+                lessons: []
+            };
+            dispatch({
+                type: SET_LESSONS,
+                payload: lessons
+            })
+        } else {
+            dispatch({
+                type: SET_LESSONS,
+                payload: lessonsFromLS
+            })
+        }
+    };
+
+    /*
+    clear-table-button click handler
+     */
+    const clearTable = () => {
+        const lessons = {
+            course: "",
+            lessons: []
+        };
+        dispatch({
+            type: SET_LESSONS,
+            payload: lessons
+        });
+        localStorage.clear();
     };
 
     const postToCanvas = async (newState, userID) => {
@@ -134,7 +123,9 @@ const ScheduleState = (props) => {
             canvasUsers: state.canvasUsers,
             fetchLessons,
             postToCanvas,
-            fetchUsersFromCanvas
+            fetchUsersFromCanvas,
+            fetchFromLS,
+            clearTable
         }}
     >
         {props.children}

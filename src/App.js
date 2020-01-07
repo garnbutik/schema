@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Lessons from './components/Lessons';
 import Navbar from './components/NavBar';
 import LessonNew from "./components/LessonNews";
 import Home from './components/Home';

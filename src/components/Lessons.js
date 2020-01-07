@@ -1,7 +1,6 @@
 import React, {useContext, Fragment} from 'react';
 import Lesson from "./Lesson";
 import ScheduleContext from "../context/schedule/scheduleContext";
-import LessonTableRow from "./LessonTableRow";
 
 const Lessons = () => {
     const scheduleContext = useContext(ScheduleContext);

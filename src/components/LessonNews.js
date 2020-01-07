@@ -17,9 +17,24 @@ const LessonNew = () => {
         e.preventDefault();
         const courseCode = document.getElementById('courseCode').value;
         const selectedOption = document.getElementById('select-term');
-        const termFromDate = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-from');
-        const termEndDate = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-to');
-        scheduleContext.fetchLessons(courseCode, termFromDate, termEndDate);
+        if (!/^[A-Za-z]\d\d\d\d[A-Za-z]/.test(courseCode)) {
+            scheduleContext.setAlert("Du måste ange kurskod enligt mönster A1234B", 'danger');
+        } else if (selectedOption.value === 'placeholder') {
+            scheduleContext.setAlert("Du måste välja termin i listan", 'danger');
+        } else {
+            const termFromDate = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-from');
+            const termEndDate = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-to');
+            scheduleContext.fetchLessons(courseCode, termFromDate, termEndDate);
+        }
+    };
+
+    const deleteLessonFromState = (e) => {
+        e.preventDefault();
+        let newState = [...lessons].filter(lesson => lesson.id !== e.currentTarget.id);
+        scheduleContext.setLessons({
+            course: coursedetails,
+            lessons: newState
+        });
     };
 
     const handlePostToCanvasOnClick = (e) => {
@@ -49,17 +64,18 @@ const LessonNew = () => {
             <div className={'margin-1rem'}>
                 <div className={'button-bar'}>
                     <div className={'button-bar-item'}>
-                        <input id={'courseCode'}/>
+                        <input placeholder={'Kurskod'} id={'courseCode'}/>
                         <select id={'select-term'}>
+                            <option value="placeholder"> -- Välj termin i listan -- </option>
                             {terms.map(term => (
                                 <option data-from={term.from} data-to={term.to}>{term.name}</option>
                                 ))
                             }
                         </select>
-                        <button className={'btn-primary'} onClick={handleFetchLessonsOnClick}>Hämta lektioner</button>
+                        <button className={'btn-primary'} onClick={handleFetchLessonsOnClick}>Hämta lektioner från TimeEdit</button>
                     </div>
                     <div className="button-bar-item">
-                        <input type={'text'} id={'canvas-search'} />
+                        <input placeholder={'Användare, kurs eller grupp'} type={'text'} id={'canvas-search'} />
                         <select name="" id="canvas-context-code">
                             {canvasUsers.length < 1 ? (
                                 <option value="placeholder">  -- Sök i rutan ovan för att få alternativ --  </option>
@@ -71,20 +87,14 @@ const LessonNew = () => {
                                 )
                             }
                         </select>
-                        <button onClick={handleFetchFromCanvas} className={'btn-primary'}>Sök i Canvas</button>
+                        <button onClick={handleFetchFromCanvas} className={'btn-primary'}>Sök kalender i Canvas</button>
                     </div>
                     <div className={'button-bar-item'}>
-                        {disablePostButton() ? (
-                            <button disabled={true} className={'btn-primary'}>Skicka lektioner till Canvas</button>
-                        ) :
-                            (
-                                <button className={'btn-primary'} onClick={handlePostToCanvasOnClick}>Skicka lektioner till Canvas</button>
-                            )
-                        }
+                        <button disabled={disablePostButton()} className={'btn-primary'}>Skicka lektioner till Canvas</button>
                     </div>
                 </div>
                 <Alert/>
-                {(lessons.length < 1) ? <h3>Hämta kurser för att visa dem här</h3> :
+                {(lessons.length < 1) ? <h3>Sök efter kurser så visas de här</h3> :
                     <>
                     <h2>{`Kurs: ${coursedetails}`}</h2>
                     <table>
@@ -100,7 +110,7 @@ const LessonNew = () => {
                             <th>Övrig info</th>
                         </tr>
                         {lessons.map(lesson => (
-                            <tr key={lesson.id}>
+                            <tr id={lesson.id} key={lesson.id}>
                                 <td>{lesson.id}</td>
                                 <td>{lesson.startdate}</td>
                                 <td>{`${lesson.starttime} ${lesson.endtime}`}</td>
@@ -114,6 +124,12 @@ const LessonNew = () => {
                                         className={'textarea-fullsize'}
                                         defaultValue={lesson.additionalProps}>
                                     </textarea>
+                                </td>
+                                <td className={'no-border transparent-background display-flex-column-stretch'}>
+                                    <button id={lesson.id} onClick={deleteLessonFromState}>
+                                        <i className="far fa-trash-alt">
+                                        </i>
+                                    </button>
                                 </td>
                             </tr>
                         ))}

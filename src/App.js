@@ -15,11 +15,12 @@ class App extends Component {
                         <Fragment>
                             <div className='App'>
                                 <Navbar/>
-                                <Switch>
-                                    <Route exact path='/' component={Home}/>
-                                    <Route exact path='/skapa-schema' component={CreateSchedule}/>
-                                    <Route exact path='/hantera-schema' component={LessonNew}/>
-                                </Switch>
+                                <div className={'width-75-margin-0-auto'}>
+                                    <Switch>
+                                        <Route exact path='/' component={Home}/>
+                                        <Route exact path='/skapa-schema' component={CreateSchedule}/>
+                                        <Route exact path='/hantera-schema' component={LessonNew}/>
+                                    </Switch></div>
                             </div>
                         </Fragment>
                     </Router>

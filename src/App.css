@@ -14,7 +14,11 @@
     text-align: center;
     width: 100%;
     font-family: roboto, sans-serif;
+}
 
+.width-75-margin-0-auto {
+    width: 75%;
+    margin: 0 auto;
 }
 
 h1 {
@@ -64,30 +68,6 @@ h1 {
 
 }
 
-.grid {
-    display: grid;
-    grid-gap: 1rem;
-    margin: 1rem;
-}
-
-@media (min-width: 800px) {
-    .grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (min-width: 1200px) {
-    .grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-@media (min-width: 1500px) {
-    .grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-}
-
 .lesson-item > textarea {
     resize: vertical;
     text-align: center;
@@ -95,16 +75,8 @@ h1 {
 
 }
 
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background-color: rgba(214, 214, 216, 0.99);
-    background-color: #A8DBA8;
-}
 
 .navLink-default{
-    border: #000000 solid 1px;
     border-radius: 0.25rem;
     padding: 0.7rem;
     text-decoration: none;
@@ -114,20 +86,26 @@ h1 {
 }
 
 .isActiveRoute{
-    border: black solid 1px;
     border-radius: 0.25rem;
     padding: 0.7rem;
     font-weight: bold;
     background-color: #eeffde;
 }
 
+.navbar {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+    background-color: rgba(214, 214, 216, 0.99);
+    background-color: #A8DBA8;
+}
 
 .navbar > ul {
     list-style: none;
     display: flex;
+    align-items: center;
     margin: 0;
     padding: 0;
-
 }
 
 .navbar > ul > li{
@@ -152,6 +130,10 @@ h1 {
     align-items: center;
 }
 
+input:focus::placeholder{
+    color: transparent;
+}
+
 .button-bar-item:first-child{
 }
 
@@ -167,9 +149,13 @@ h1 {
     width: 10rem;
     height: 3rem;
     font-family: roboto, sans-serif;
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: bold;
     margin-top: auto;
+}
+
+.btn-primary:disabled{
+    opacity: 50%;
 }
 
 .alert {
@@ -178,12 +164,13 @@ h1 {
     opacity: 0.9;
     background: var(--light-color);
     color: #333;
+    font-weight: bold;
 }
 
-.btn-light,
-.bg-light,
-.badge-light,
-.alert-light {
+.btn-danger,
+.bg-danger,
+.badge-danger,
+.alert-danger {
     background: var(--danger-color);
     color: #333;
 }

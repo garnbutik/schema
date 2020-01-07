@@ -1,4 +1,4 @@
-import React, {useContext, useReducer} from 'react';
+import React, { useReducer} from 'react';
 import ScheduleReducer from './scheduleReducer';
 import ScheduleContext from './scheduleContext';
 import axios from 'axios';
@@ -30,14 +30,27 @@ const ScheduleState = (props) => {
 
     const [state, dispatch] = useReducer(ScheduleReducer, initialState);
 
+    const setAlert = (msg, type) => {
+        dispatch({
+            type: SET_ALERT,
+            payload: {msg, type}
+        });
+        setTimeout(() =>  dispatch({type: REMOVE_ALERT}), 5000);
+    };
+
+    const setLessons = (newState) => {
+        dispatch({
+            type: SET_LESSONS,
+            payload: newState
+        })
+    };
+
 
     //Fetch from Schemahantering Rest API
     const fetchLessons = async (courseCode, startdate, enddate) => {
         //clears lessons when searching
-        dispatch({
-            type: SET_LESSONS,
-            payload: resetLessons
-        });
+        setLessons(resetLessons);
+
         try {
             const res = await axios.get(`${baseUrl}/lessons/${courseCode}`, {
                 params: {
@@ -46,25 +59,16 @@ const ScheduleState = (props) => {
                 }
 
             });
-            dispatch({
-                type: SET_LESSONS,
-                payload: res.data
-            });
-            debugger;
+            setLessons(res.data);
+
             //saves to LS to keep state when page is refreshed
             localStorage.setItem("lessons", JSON.stringify(res.data));
         } catch (e) {
-            setAlert("Kunde inte hitta någon kurs", 'light')
+            setAlert("Kunde inte hitta någon kurs", 'danger')
         }
     };
 
-    const setAlert = (msg, type) => {
-        dispatch({
-            type: SET_ALERT,
-            payload: {msg, type}
-        });
-        setTimeout(() =>  dispatch({type: REMOVE_ALERT}), 5000);
-    };
+
 
     /*
     Helper method to check if state is persisted to LS
@@ -74,19 +78,10 @@ const ScheduleState = (props) => {
 
         //If no lessons in LS set to empty array
         if (lessonsFromLS === undefined || lessonsFromLS === null || lessonsFromLS.length < 1) {
-            const lessons = {
-                course: "",
-                lessons: []
-            };
-            dispatch({
-                type: SET_LESSONS,
-                payload: lessons
-            })
+            setLessons(resetLessons);
         } else {
-            dispatch({
-                type: SET_LESSONS,
-                payload: lessonsFromLS
-            })
+            setLessons(lessonsFromLS);
+
         }
     };
 
@@ -94,14 +89,7 @@ const ScheduleState = (props) => {
     clear-table-button click handler
      */
     const clearTable = () => {
-        const lessons = {
-            course: "",
-            lessons: []
-        };
-        dispatch({
-            type: SET_LESSONS,
-            payload: lessons
-        });
+        setLessons(resetLessons);
         localStorage.clear();
     };
 
@@ -144,7 +132,8 @@ const ScheduleState = (props) => {
             fetchUsersFromCanvas,
             fetchFromLS,
             clearTable,
-            setAlert
+            setAlert,
+            setLessons
         }}
     >
         {props.children}

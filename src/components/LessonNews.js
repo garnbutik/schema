@@ -2,10 +2,11 @@ import React, {useContext, Fragment, useEffect} from 'react';
 import ScheduleContext from "../context/schedule/scheduleContext";
 import '../table.css';
 import {terms} from "../listOfTerms";
+import Alert from "./Alert";
 
 const LessonNew = () => {
     const scheduleContext = useContext(ScheduleContext);
-    const {lessons, coursedetails, canvasUsers} = scheduleContext;
+    const {lessons, coursedetails, canvasUsers, alertState} = scheduleContext;
 
     useEffect(() => {
         scheduleContext.fetchFromLS();
@@ -18,7 +19,6 @@ const LessonNew = () => {
         const selectedOption = document.getElementById('select-term');
         const termFromDate = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-from');
         const termEndDate = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-to');
-        debugger;
         scheduleContext.fetchLessons(courseCode, termFromDate, termEndDate);
     };
 
@@ -83,7 +83,8 @@ const LessonNew = () => {
                         }
                     </div>
                 </div>
-                {lessons.length < 1 ? <h3>Hämta kurser för att visa dem här</h3> :
+                <Alert/>
+                {(lessons.length < 1) ? <h3>Hämta kurser för att visa dem här</h3> :
                     <>
                     <h2>{`Kurs: ${coursedetails}`}</h2>
                     <table>

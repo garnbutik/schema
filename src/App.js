@@ -11,18 +11,18 @@ class App extends Component {
     render() {
         return (
             <ScheduleState>
-                <Router>
-                    <Fragment>
-                        <div className='App'>
-                            <Navbar/>
-                            <Switch>
-                                <Route exact path='/' component={Home}/>
-                                <Route exact path='/skapa-schema' component={CreateSchedule}/>
-                                <Route exact path='/hantera-schema' component={LessonNew}/>
-                            </Switch>
-                        </div>
-                    </Fragment>
-                </Router>
+                    <Router>
+                        <Fragment>
+                            <div className='App'>
+                                <Navbar/>
+                                <Switch>
+                                    <Route exact path='/' component={Home}/>
+                                    <Route exact path='/skapa-schema' component={CreateSchedule}/>
+                                    <Route exact path='/hantera-schema' component={LessonNew}/>
+                                </Switch>
+                            </div>
+                        </Fragment>
+                    </Router>
             </ScheduleState>
         );
     }

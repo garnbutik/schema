@@ -1,3 +1,11 @@
+:root {
+    --primary-color: #dc3545;
+    --dark-color: #333333;
+    --light-color: #f4f4f4;
+    --danger-color: #dc6c30;
+    --success-color: #28a745;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -162,4 +170,20 @@ h1 {
     font-size: 1rem;
     font-weight: bold;
     margin-top: auto;
+}
+
+.alert {
+    padding: 0.7rem;
+    margin: 1rem 0;
+    opacity: 0.9;
+    background: var(--light-color);
+    color: #333;
+}
+
+.btn-light,
+.bg-light,
+.badge-light,
+.alert-light {
+    background: var(--danger-color);
+    color: #333;
 }

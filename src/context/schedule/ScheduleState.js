@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, {useContext, useReducer} from 'react';
 import ScheduleReducer from './scheduleReducer';
 import ScheduleContext from './scheduleContext';
 import axios from 'axios';
@@ -7,7 +7,9 @@ import {
     SET_LESSONS,
     SET_ADDITIONAL_PROPS,
     SET_IS_TRANSFERRED_TO_CANVAS,
-    SET_USERS_FROM_CANVAS
+    SET_USERS_FROM_CANVAS,
+    SET_ALERT,
+    REMOVE_ALERT
 } from "../types";
 
 const ScheduleState = (props) => {
@@ -16,6 +18,7 @@ const ScheduleState = (props) => {
         lessons: [],
         coursedetails: '',
         canvasUsers: [],
+        alertState: null
     };
 
     const baseUrl = 'http://localhost:8100';
@@ -27,26 +30,40 @@ const ScheduleState = (props) => {
 
     const [state, dispatch] = useReducer(ScheduleReducer, initialState);
 
+
     //Fetch from Schemahantering Rest API
     const fetchLessons = async (courseCode, startdate, enddate) => {
-        //resets lessons when searching
+        //clears lessons when searching
         dispatch({
             type: SET_LESSONS,
             payload: resetLessons
         });
-        const res = await axios.get(`${baseUrl}/lessons/${courseCode}`, {
-            params: {
-                startDate: startdate,
-                endDate: enddate
-            }
-        });
-        dispatch({
-            type: SET_LESSONS,
-            payload: res.data
-        });
+        try {
+            const res = await axios.get(`${baseUrl}/lessons/${courseCode}`, {
+                params: {
+                    startDate: startdate,
+                    endDate: enddate
+                }
 
-        //saves to LS to keep state when page is refreshed
-        localStorage.setItem("lessons", JSON.stringify(res.data));
+            });
+            dispatch({
+                type: SET_LESSONS,
+                payload: res.data
+            });
+            debugger;
+            //saves to LS to keep state when page is refreshed
+            localStorage.setItem("lessons", JSON.stringify(res.data));
+        } catch (e) {
+            setAlert("Kunde inte hitta någon kurs", 'light')
+        }
+    };
+
+    const setAlert = (msg, type) => {
+        dispatch({
+            type: SET_ALERT,
+            payload: {msg, type}
+        });
+        setTimeout(() =>  dispatch({type: REMOVE_ALERT}), 5000);
     };
 
     /*
@@ -121,11 +138,13 @@ const ScheduleState = (props) => {
             lessons: state.lessons,
             coursedetails: state.coursedetails,
             canvasUsers: state.canvasUsers,
+            alertState: state.alertState,
             fetchLessons,
             postToCanvas,
             fetchUsersFromCanvas,
             fetchFromLS,
-            clearTable
+            clearTable,
+            setAlert
         }}
     >
         {props.children}

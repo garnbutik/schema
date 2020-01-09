@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/NavBar';
-import LessonNew from "./components/LessonNews";
+import LessonNew from "./components/Lessons";
 import Home from './components/Home';
 import ScheduleState from "./context/schedule/ScheduleState";
 import CreateSchedule from "./components/CreateSchedule";

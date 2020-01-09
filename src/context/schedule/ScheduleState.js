@@ -47,6 +47,7 @@ const ScheduleState = (props) => {
 
 
     //Fetch from Schemahantering Rest API
+    //TODO add alert for no response from api
     const fetchLessons = async (courseCode, startdate, enddate) => {
         //clears lessons when searching
         setLessons(resetLessons);
@@ -62,7 +63,7 @@ const ScheduleState = (props) => {
             setLessons(res.data);
 
             //saves to LS to keep state when page is refreshed
-            localStorage.setItem("lessons", JSON.stringify(res.data));
+            sessionStorage.setItem("lessons", JSON.stringify(res.data));
         } catch (e) {
             setAlert("Kunde inte hitta någon kurs", 'danger')
         }
@@ -74,7 +75,7 @@ const ScheduleState = (props) => {
     Helper method to check if state is persisted to LS
      */
     const fetchFromLS = () => {
-        const lessonsFromLS = JSON.parse(localStorage.getItem("lessons"));
+        const lessonsFromLS = JSON.parse(sessionStorage.getItem("lessons"));
 
         //If no lessons in LS set to empty array
         if (lessonsFromLS === undefined || lessonsFromLS === null || lessonsFromLS.length < 1) {
@@ -90,7 +91,7 @@ const ScheduleState = (props) => {
      */
     const clearTable = () => {
         setLessons(resetLessons);
-        localStorage.clear();
+        sessionStorage.clear();
     };
 
     const postToCanvas = async (newState, userID) => {

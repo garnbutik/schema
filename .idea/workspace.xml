@@ -3,12 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="f084ec64-da8c-41e1-972f-083c963e7b59" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LessonNews.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LessonNews.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Lesson.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LessonNews.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LessonTableRow.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Lessons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Lessons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TransferForm.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/context/schedule/ScheduleState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/schedule/ScheduleState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/listOfTerms.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/listOfTerms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/table.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/table.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +121,8 @@
       <workItem from="1578293705261" duration="5854000" />
       <workItem from="1578339156792" duration="2206000" />
       <workItem from="1578342559552" duration="2308000" />
-      <workItem from="1578388424719" duration="21745000" />
+      <workItem from="1578388424719" duration="24956000" />
+      <workItem from="1578480838214" duration="4207000" />
     </task>
     <task id="LOCAL−00001" summary="en massa">
       <created>1577901081367</created>
@@ -173,7 +178,13 @@
       <option name="presentableId" value="LOCAL−00009" />
       <updated>1578398834775</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL−00010" summary="refactored ScheduleState.js and added delete button for lessons and some other small fixes">
+      <created>1578430443885</created>
+      <option name="number" value="LOCAL−00010" />
+      <option name="presentableId" value="LOCAL−00010" />
+      <updated>1578430443885</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,37 +195,38 @@
     <MESSAGE value="lagt till funktionalitet för att posta till canvas" />
     <MESSAGE value="en massa" />
     <MESSAGE value="added alert component" />
-    <option name="LAST_COMMIT_MESSAGE" value="added alert component" />
+    <MESSAGE value="refactored ScheduleState.js and added delete button for lessons and some other small fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored ScheduleState.js and added delete button for lessons and some other small fixes" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1577797133084">
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1578557717687">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577797133084" />
-    <state x="276" y="114" width="1058" height="812" key="CommitChangelistDialog2" timestamp="1578398834274">
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578557717687" />
+    <state x="276" y="114" width="1058" height="812" key="CommitChangelistDialog2" timestamp="1578430442209">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="276" y="114" width="1058" height="812" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578398834274" />
-    <state x="29" y="86" key="DiffContextDialog" timestamp="1577994191600">
+    <state x="276" y="114" width="1058" height="812" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578430442209" />
+    <state x="29" y="86" key="DiffContextDialog" timestamp="1578430377317">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="29" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577994191600" />
-    <state width="1899" height="196" key="GridCell.Tab.0.bottom" timestamp="1578402535504">
+    <state x="29" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578430377317" />
+    <state width="1899" height="196" key="GridCell.Tab.0.bottom" timestamp="1578560248453">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="196" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1578402535504" />
-    <state width="1899" height="196" key="GridCell.Tab.0.center" timestamp="1578402535504">
+    <state width="1899" height="196" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1578560248453" />
+    <state width="1899" height="196" key="GridCell.Tab.0.center" timestamp="1578560248453">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="196" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1578402535504" />
-    <state width="1899" height="196" key="GridCell.Tab.0.left" timestamp="1578402535504">
+    <state width="1899" height="196" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1578560248453" />
+    <state width="1899" height="196" key="GridCell.Tab.0.left" timestamp="1578560248453">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="196" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1578402535504" />
-    <state width="1899" height="196" key="GridCell.Tab.0.right" timestamp="1578402535504">
+    <state width="1899" height="196" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1578560248453" />
+    <state width="1899" height="196" key="GridCell.Tab.0.right" timestamp="1578560248453">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="196" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1578402535504" />
+    <state width="1899" height="196" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1578560248453" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1578263713623">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -267,9 +279,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="770" y="230" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578341340418" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1578398839696">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1578430451033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578398839696" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578430451033" />
   </component>
 </project>

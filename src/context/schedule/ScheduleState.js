@@ -115,7 +115,7 @@ const ScheduleState = (props) => {
     };
 
     const fetchUsersFromCanvas = async (searchString) => {
-        const res = await axios.get(`${baseUrl}/users/${searchString}`);
+        const res = await axios.get(`${baseUrl}/context-codes/${searchString}`);
         dispatch({
             type: SET_USERS_FROM_CANVAS,
             payload: res.data

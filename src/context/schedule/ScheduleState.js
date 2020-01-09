@@ -65,7 +65,15 @@ const ScheduleState = (props) => {
             //saves to LS to keep state when page is refreshed
             sessionStorage.setItem("lessons", JSON.stringify(res.data));
         } catch (e) {
-            setAlert("Kunde inte hitta någon kurs", 'danger')
+            if (e.response === undefined) {
+                setAlert("Nätverksfel, pröva senare", 'danger')
+            }
+            else if (e.response.status === 404) {
+                setAlert("Kunde inte hitta någon kurs", 'danger')
+            } else {
+                setAlert(e.toString());
+            }
+
         }
     };
 

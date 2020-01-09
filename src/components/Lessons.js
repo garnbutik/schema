@@ -113,7 +113,7 @@ const LessonNew = () => {
                             <tr id={lesson.id} key={lesson.id}>
                                 <td>{lesson.id}</td>
                                 <td>{lesson.startdate}</td>
-                                <td>{`${lesson.starttime} ${lesson.endtime}`}</td>
+                                <td>{`${lesson.starttime} - ${lesson.endtime}`}</td>
                                 <td>{lesson.location}</td>
                                 <td>{lesson.teacher}</td>
                                 <td>{lesson.activity}</td>

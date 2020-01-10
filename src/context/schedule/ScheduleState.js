@@ -1,368 +1,189 @@
-import React, {useReducer} from 'react';
+import React, { useReducer} from 'react';
 import ScheduleReducer from './scheduleReducer';
 import ScheduleContext from './scheduleContext';
 import axios from 'axios';
 
 import {
-    FETCH_LESSONS
+    SET_LESSONS,
+    SET_ADDITIONAL_PROPS,
+    SET_IS_TRANSFERRED_TO_CANVAS,
+    SET_USERS_FROM_CANVAS,
+    SET_ALERT,
+    REMOVE_ALERT,
+    SET_MESSAGEBOX_STATE,
 } from "../types";
 
 const ScheduleState = (props) => {
-  const initialState = {
-      isTransferredToCanvas: false,
-      lessons: [],
-      coursedetails: '',
-      lessons_old: [
-          {
-              "id": "457600",
-              "startdate": "2018-04-05",
-              "starttime": "13:00",
-              "enddate": "2018-04-05",
-              "endtime": "14:30",
-              "columns": [
-                  "",
-                  "A3001",
-                  "Helena Brännström",
-                  "Lektion",
-                  "",
-                  "M0010N. Försäljning och etik",
-                  "Luleå",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  ""
-              ]
-          },
-          {
-              "id": "457601",
-              "startdate": "2018-04-05",
-              "starttime": "14:45",
-              "enddate": "2018-04-05",
-              "endtime": "16:15",
-              "columns": [
-                  "",
-                  "A3001",
-                  "Helena Brännström",
-                  "Lektion",
-                  "",
-                  "M0010N. Försäljning och etik",
-                  "Luleå",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  ""
-              ]
-          },
-          {
-              "id": "457602",
-              "startdate": "2018-04-09",
-              "starttime": "13:00",
-              "enddate": "2018-04-09",
-              "endtime": "14:30",
-              "columns": [
-                  "",
-                  "A3001",
-                  "Helena Brännström",
-                  "Lektion",
-                  "",
-                  "M0010N. Försäljning och etik",
-                  "Luleå",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  ""
-              ]
-          },
-          {
-              "id": "457603",
-              "startdate": "2018-04-09",
-              "starttime": "14:45",
-              "enddate": "2018-04-09",
-              "endtime": "16:15",
-              "columns": [
-                  "",
-                  "A3001",
-                  "Helena Brännström",
-                  "Lektion",
-                  "",
-                  "M0010N. Försäljning och etik",
-                  "Luleå",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  ""
-              ]
-          },
-          {
-              "id": "457605",
-              "startdate": "2018-04-11",
-              "starttime": "08:15",
-              "enddate": "2018-04-11",
-              "endtime": "09:45",
-              "columns": [
-                  "",
-                  "A2029",
-                  "Helena Brännström",
-                  "Lektion",
-                  "",
-                  "M0010N. Försäljning och etik",
-                  "Luleå",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  ""
-              ]
-          },
-          {
-              "id": "457606",
-              "startdate": "2018-04-11",
-              "starttime": "10:15",
-              "enddate": "2018-04-11",
-              "endtime": "11:45",
-              "columns": [
-                  "",
-                  "A2029",
-                  "Helena Brännström",
-                  "Lektion",
-                  "",
-                  "M0010N. Försäljning och etik",
-                  "Luleå",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  ""
-              ]
-          },
-          {
-              "id": "457607",
-              "startdate": "2018-04-18",
-              "starttime": "08:15",
-              "enddate": "2018-04-18",
-              "endtime": "09:45",
-              "columns": [
-                  "",
-                  "A2029",
-                  "Helena Brännström",
-                  "Lektion",
-                  "",
-                  "M0010N. Försäljning och etik",
-                  "Luleå",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  ""
-              ]
-          },
-          {
-              "id": "457608",
-              "startdate": "2018-04-18",
-              "starttime": "10:15",
-              "enddate": "2018-04-18",
-              "endtime": "11:45",
-              "columns": [
-                  "",
-                  "A2029",
-                  "Helena Brännström",
-                  "Lektion",
-                  "",
-                  "M0010N. Försäljning och etik",
-                  "Luleå",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  ""
-              ]
-          },
-          {
-              "id": "457609",
-              "startdate": "2018-04-19",
-              "starttime": "13:00",
-              "enddate": "2018-04-19",
-              "endtime": "14:30",
-              "columns": [
-                  "",
-                  "A2011",
-                  "Helena Brännström",
-                  "Lektion",
-                  "",
-                  "M0010N. Försäljning och etik",
-                  "Luleå",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  ""
-              ]
-          },
-          {
-              "id": "457610",
-              "startdate": "2018-04-19",
-              "starttime": "14:45",
-              "enddate": "2018-04-19",
-              "endtime": "16:15",
-              "columns": [
-                  "",
-                  "A2011",
-                  "Helena Brännström",
-                  "Lektion",
-                  "",
-                  "M0010N. Försäljning och etik",
-                  "Luleå",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  ""
-              ]
-          },
-          {
-              "id": "457611",
-              "startdate": "2018-04-19",
-              "starttime": "16:30",
-              "enddate": "2018-04-19",
-              "endtime": "18:00",
-              "columns": [
-                  "",
-                  "A2011",
-                  "Helena Brännström",
-                  "Lektion",
-                  "",
-                  "M0010N. Försäljning och etik",
-                  "Luleå",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  ""
-              ]
-          },
-          {
-              "id": "457612",
-              "startdate": "2018-04-23",
-              "starttime": "13:00",
-              "enddate": "2018-04-23",
-              "endtime": "14:30",
-              "columns": [
-                  "",
-                  "A3001",
-                  "Helena Brännström",
-                  "Lektion",
-                  "",
-                  "M0010N. Försäljning och etik",
-                  "Luleå",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  ""
-              ]
-          },
-          {
-              "id": "457613",
-              "startdate": "2018-04-23",
-              "starttime": "14:45",
-              "enddate": "2018-04-23",
-              "endtime": "16:15",
-              "columns": [
-                  "",
-                  "A3001",
-                  "Helena Brännström",
-                  "Lektion",
-                  "",
-                  "M0010N. Försäljning och etik",
-                  "Luleå",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  ""
-              ]
-          },
-          {
-              "id": "457614",
-              "startdate": "2018-05-17",
-              "starttime": "13:00",
-              "enddate": "2018-05-17",
-              "endtime": "14:30",
-              "columns": [
-                  "",
-                  "A3001",
-                  "Helena Brännström",
-                  "Lektion",
-                  "",
-                  "M0010N. Försäljning och etik",
-                  "Luleå",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  ""
-              ]
-          },
-          {
-              "id": "457615",
-              "startdate": "2018-05-17",
-              "starttime": "14:45",
-              "enddate": "2018-05-17",
-              "endtime": "16:15",
-              "columns": [
-                  "",
-                  "A3001",
-                  "Helena Brännström",
-                  "Lektion",
-                  "",
-                  "M0010N. Försäljning och etik",
-                  "Luleå",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  ""
-              ]
-          }
-      ],
+    const initialState = {
+        isTransferredToCanvas: false,
+        lessons: [],
+        coursedetails: '',
+        canvasUsers: [],
+        alertState: null,
+        messageBoxState: null
+    };
 
-  };
+    const baseUrl = 'http://localhost:8100';
 
-  const [state, dispatch] = useReducer(ScheduleReducer, initialState);
+    const resetLessons = {
+        course: "",
+        lessons: []
+    };
+    const messageSearchCourses = {
+        text: 'Sök ovan för att visa kurser.',
+        type: 'light'
+    };
+
+    const [state, dispatch] = useReducer(ScheduleReducer, initialState);
+
+    const setAlert = (msg, type) => {
+        dispatch({
+            type: SET_ALERT,
+            payload: {msg, type}
+        });
+        setTimeout(() =>  dispatch({type: REMOVE_ALERT}), 5000);
+    };
+
+    const setLessons = (newState) => {
+        dispatch({
+            type: SET_LESSONS,
+            payload: newState
+        })
+    };
+
+    const setMessageBoxState = (data) => {
+        dispatch({
+            type: SET_MESSAGEBOX_STATE,
+            payload: data
+        })
+    };
+
 
     //Fetch from Schemahantering Rest API
-    const fetchLessons = async (courseCode) => {
-        const res = await axios.get(`http://localhost:8100/lessons/${courseCode}`);
+    const fetchLessons = async (courseCode, startdate, enddate) => {
+        //clears lessons when searching
+        setLessons(resetLessons);
+        setMessageBoxState(null);
+
+        try {
+            const res = await axios.get(`${baseUrl}/lessons/${courseCode}`, {
+                params: {
+                    startDate: startdate,
+                    endDate: enddate
+                }
+
+            });
+            setLessons(res.data);
+
+            //saves to LS to keep state when page is refreshed
+            sessionStorage.setItem("lessons", JSON.stringify(res.data));
+        } catch (e) {
+            if (e.response === undefined) {
+                setAlert("Nätverksfel, pröva senare", 'danger');
+
+            }
+            else if (e.response.status === 404) {
+                setAlert("Kunde inte hitta någon kurs", 'danger');
+            } else {
+                setAlert(e.toString(), 'danger');
+            }
+
+        }
+    };
+
+
+
+    /*
+    Helper method to check if state is persisted to LS
+     */
+    const fetchFromLS = () => {
+        const lessonsFromLS = JSON.parse(sessionStorage.getItem("lessons"));
+
+        //If no lessons in LS set to empty array
+        if (lessonsFromLS === undefined || lessonsFromLS === null || lessonsFromLS.length < 1) {
+            setLessons(resetLessons);
+            setMessageBoxState(messageSearchCourses)
+        } else {
+            setLessons(lessonsFromLS);
+        }
+
+    };
+
+    /*
+    clear-table-button click handler
+     */
+    const clearTable = () => {
+        setLessons(resetLessons);
+        sessionStorage.clear();
+        setMessageBoxState({
+            text: 'Sök ovan för att visa kurser.',
+            type: 'light'
+        })
+    };
+
+    const postToCanvas = async (newState, userID) => {
         dispatch({
-            type: FETCH_LESSONS,
-            payload: res.data
+            type: SET_ADDITIONAL_PROPS,
+            payload: newState
         });
+        const requestBody = {
+            course: state.coursedetails,
+            user: userID,
+            lessons: state.lessons
+        };
+        const res = await axios.post(`${baseUrl}/canvas/`, requestBody);
+        if (res.status === 201) {
+            dispatch({
+                type: SET_IS_TRANSFERRED_TO_CANVAS,
+                payload: true
+            });
+        //setAlert("All information är överförd till Canvas", 'success');
+        setMessageBoxState({
+            text: 'Alla lektioner är överförda till Canvas',
+            type: 'light'
+        })
+        } else if (res.status === 207) {
+            setMessageBoxState({
+                text: res.data,
+                type: 'danger',
+            })
+        }
+        console.log(res.status);
+    };
+
+    const fetchUsersFromCanvas = async (searchString) => {
+        dispatch({
+            type: SET_USERS_FROM_CANVAS,
+            payload: []
+        })
+        try {
+            const res = await axios.get(`${baseUrl}/context-codes/${searchString}`);
+            dispatch({
+                type: SET_USERS_FROM_CANVAS,
+                payload: res.data
+            })
+        } catch (e) {
+            setAlert('Kunde inte hitta någon kalender', 'danger');
+        }
+
     };
 
     return <ScheduleContext.Provider
         value={{
             lessons: state.lessons,
+            isTransferredToCanvas: state.isTransferredToCanvas,
             coursedetails: state.coursedetails,
-            fetchLessons
+            canvasUsers: state.canvasUsers,
+            alertState: state.alertState,
+            messageBoxState: state.messageBoxState,
+            fetchLessons,
+            postToCanvas,
+            fetchUsersFromCanvas,
+            fetchFromLS,
+            clearTable,
+            setAlert,
+            setLessons,
+            setMessageBoxState,
         }}
     >
         {props.children}

@@ -173,3 +173,22 @@ input:focus::placeholder{
     background: var(--danger-color);
     color: #333;
 }
+
+.btn-success,
+.bg-success,
+.badge-success,
+.alert-success {
+    background: var(--success-color);
+    color: #fff;
+}
+.btn-sm {
+    font-size: 0.8rem;
+    padding: 0.3rem 1rem;
+    margin-right: 0.2rem;
+    width: 4rem;
+    height: 1.7rem;
+}
+
+.hide-element {
+    display: none;
+}

@@ -2,7 +2,10 @@ import {
     SET_LESSONS,
     SET_ADDITIONAL_PROPS,
     SET_IS_TRANSFERRED_TO_CANVAS,
-    SET_USERS_FROM_CANVAS, SET_ALERT, REMOVE_ALERT
+    SET_USERS_FROM_CANVAS,
+    SET_ALERT,
+    REMOVE_ALERT,
+    SET_MESSAGEBOX_STATE,
 } from "../types";
 
 export default (state, action) => {
@@ -43,6 +46,12 @@ export default (state, action) => {
                 ...state,
                 alertState: null
             };
+        }
+        case SET_MESSAGEBOX_STATE: {
+            return {
+                ...state,
+                messageBoxState: action.payload
+            }
         }
         default: {
             return state

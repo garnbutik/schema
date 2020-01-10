@@ -1,12 +1,13 @@
 import React, {useContext, Fragment, useEffect} from 'react';
 import ScheduleContext from "../context/schedule/scheduleContext";
 import '../table.css';
-import {terms} from "../listOfTerms";
+import {terms} from "./assets/listOfTerms";
 import Alert from "./Alert";
+import MessageBox from "./MessageBox";
 
 const LessonNew = () => {
     const scheduleContext = useContext(ScheduleContext);
-    const {lessons, coursedetails, canvasUsers} = scheduleContext;
+    const {lessons, coursedetails, canvasUsers, isTransferredToCanvas} = scheduleContext;
 
     useEffect(() => {
         scheduleContext.fetchFromLS();
@@ -94,7 +95,9 @@ const LessonNew = () => {
                     </div>
                 </div>
                 <Alert/>
-                {(lessons.length < 1) ? <h3>Sök efter kurser så visas de här</h3> :
+                <MessageBox/>
+                {(lessons.length < 1) ? ''
+                    :
                     <>
                     <h2>{`Kurs: ${coursedetails}`}</h2>
                     <table>
